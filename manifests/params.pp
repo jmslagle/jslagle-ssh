@@ -5,7 +5,7 @@ class ssh::params {
       $serverpkg = 'openssh-server'
       $service   = 'sshd'
     }
-    'Debian':
+    'Debian': {
       $clientpkg = 'ssh-client'
       $serverpkg = 'ssh-server'
       $service   = 'ssh'
@@ -14,4 +14,5 @@ class ssh::params {
       # No packages - base system
       $service   = 'ssh'
     }
+  }
 }

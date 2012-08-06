@@ -1,10 +1,10 @@
-class ssh::client($ensure == 'present') {
-	include ssh::params
+class ssh::client($ensure = 'present') {
+  include ssh::params
 
   if ($ssh::params::clientpkg != undef) {
     package { $ssh::params::clientpkg:
       name   =>  'ssh',
-      ensure => $ensure,
+      ensure => $ensure;
     }
   }
 
