@@ -12,6 +12,7 @@ describe 'ssh::server' do
     describe 'RedHat should get openssh-server package' do
       it { should contain_package('openssh-server') }
     end
+
   end
 
   describe 'test Debian related' do
@@ -19,6 +20,13 @@ describe 'ssh::server' do
 
     describe 'Debian uses ssh-server package' do
       it { should contain_package('ssh-server') }
+    end
+
+  end
+
+  describe 'Non OS specific' do
+    describe 'ssh service should be running' do
+      it { should contain_service('ssh') }
     end
   end
 end

@@ -14,5 +14,8 @@ class ssh::params {
       # No packages - base system
       $service   = 'ssh'
     }
+    default: {
+      err("OSFamily $::osfamily not supported")
+    }
   }
 }

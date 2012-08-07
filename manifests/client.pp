@@ -3,8 +3,8 @@ class ssh::client($ensure = 'present') {
 
   if ($ssh::params::clientpkg != undef) {
     package { $ssh::params::clientpkg:
+      ensure => $ensure,
       name   =>  'ssh',
-      ensure => $ensure;
     }
   }
 
