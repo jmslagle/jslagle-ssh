@@ -4,7 +4,7 @@ class ssh::server($ensure = 'present', $enabled = true,
 
   if ($ssh::params::serverpkg != undef) {
     package { $ssh::params::serverpkg:
-      ensure => $ensure;
+      ensure => $ensure,
       name   =>  'ssh-server',
     }
   }
