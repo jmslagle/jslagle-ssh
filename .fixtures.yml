@@ -1,0 +1,5 @@
+fixtures:
+  repositories:
+    "augeasproviders": "git://github.com/domcleal/augeasproviders.git"
+  symlinks:
+    "ssh": "#{source_dir}"
