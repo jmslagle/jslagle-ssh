@@ -121,69 +121,53 @@ describe 'ssh::server' do
   end
 
   describe 'Error handling for broken parameter values' do
-    describe 'Validate values for permitroot' do
-      let (:params) { { :permitroot => "Moo" } }
-      it {
-        expect {
-          should raise_error(Puppet:Error, /permitroot must be one of/)
-        }
-      }
+    describe 'broken permitroot' do
+      let (:params) { { :permitroot => 'Moo' } }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'aliveinterval must be a number' do
+    describe 'aliveinternal not a number' do
       let (:params) { { :aliveinterval => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /aliveinterval must be a positive number/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'alivecount must be a number' do
+    describe 'alivecount not a number' do
       let (:params) { { :alivecount => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /alivecount must be a positive number/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'privilegeseperation must be yes or no' do
+    describe 'privilegeseperation not yes or no' do
       let (:params) { { :privilegeseperation => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /privilegeseperation must be yes or no/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'maxauth must be a number' do
+    describe 'maxauth not a number' do
       let (:params) { { :maxauth => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /maxauth must be a positive number/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'passwordauth must be yes or no' do
+    describe 'passwordauth not yes or no' do
       let (:params) { { :passwordauth => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /passwordauth must be a yes or no/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'usepam must be yes or no' do
+    describe 'usepam not yes or no' do
       let (:params) { { :usepam => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /usepam must be a yes or no/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
-    describe 'kerberosauth must be yes or no' do
+    describe 'kerberosauth not yes or no' do
       let (:params) { { :kerberosauth => 'Moo' } }
-      it {
-        expect {
-          should raise_error(Puppet::Error, /kerberosauth must be a yes or no/)
-        }
-      }
+      it 'should fail' do
+        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+      end
     end
   end
 

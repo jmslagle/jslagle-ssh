@@ -29,6 +29,29 @@ class ssh::server($ensure = 'present',
     fail("aliveinterval must be a positive number")
   }
 
+  if  ($alivecount !~ /^\d+$/ or $alivecount =~ /^0+$/ ) {
+    fail("alivecount must be a positive number")
+  }
+
+  if  ($maxauth !~ /^\d+$/ or $maxauth =~ /^0+$/ ) {
+    fail("maxauth must be a positive number")
+  }
+
+  if ($privilegeseperation !~ /(?i:yes|no)/) {
+    fail("privilegeseperation must be yes or no")
+  }
+
+  if ($passwordauth !~ /(?i:yes|no)/) {
+    fail("passwordauth must be yes or no")
+  }
+
+  if ($usepam !~ /(?i:yes|no)/) {
+    fail("usepam must be yes or no")
+  }
+
+  if ($kerberosauth !~ /(?i:yes|no)/) {
+    fail("kerberosauth must be yes or no")
+  }
   service { 'ssh':
     ensure  => $svcensure,
     name    => $ssh::params::service,
