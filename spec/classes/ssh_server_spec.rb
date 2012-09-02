@@ -35,25 +35,25 @@ describe 'ssh::server' do
 
   describe 'SSH Option checks' do
     describe 'Should not allow rhosts' do
-      it { should contain_sshd_config('IgnoreRhosts').with('value' => 'No') }
+      it { should contain_sshd_config('IgnoreRhosts').with('value' => 'no') }
     end
     describe 'Should not allow host based auth' do
-      it { should contain_sshd_config('HostbasedAuthentication').with('value' => 'No') }
+      it { should contain_sshd_config('HostbasedAuthentication').with('value' => 'no') }
     end
     describe 'Not permit root login by default' do
-      it { should contain_sshd_config('PermitRootLogin').with('value' => 'No') }
+      it { should contain_sshd_config('PermitRootLogin').with('value' => 'no') }
     end
     describe 'Not permit empty password' do
-      it { should contain_sshd_config('PermitEmptyPasswords').with('value' => 'No') }
+      it { should contain_sshd_config('PermitEmptyPasswords').with('value' => 'no') }
     end
     describe 'Set the loglevel to INFO' do
       it { should contain_sshd_config('LogLevel').with('value' => 'INFO') }
     end
     describe 'Enforce strict modes' do
-      it { should contain_sshd_config('StrictModes').with('value' => 'Yes') }
+      it { should contain_sshd_config('StrictModes').with('value' => 'yes') }
     end
     describe 'Should disable TCPKeepAlive' do
-      it { should contain_sshd_config('TCPKeepAlive').with('value' => 'No') }
+      it { should contain_sshd_config('TCPKeepAlive').with('value' => 'no') }
     end
     describe 'Should enable ClientAliveInterval with a default of 60 seconds' do
       it { should contain_sshd_config('ClientAliveInterval').with('value' => '60') }
@@ -62,22 +62,22 @@ describe 'ssh::server' do
       it { should contain_sshd_config('ClientAliveCountMax').with('value' => '3') }
     end
     describe 'Should enable Privilege seperation by default' do
-      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'Yes') }
+      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'yes') }
     end
     describe 'Should set MaxAuthTries to 2 by default' do
       it { should contain_sshd_config('MaxAuthTries').with('value' => '2') }
     end
     describe 'Disable Password auth by default' do
-      it { should contain_sshd_config('PasswordAuthentication').with('value' => 'No') }
+      it { should contain_sshd_config('PasswordAuthentication').with('value' => 'no') }
     end
     describe 'Should disable PAM by default' do
-      it { should contain_sshd_config('UsePAM').with('value' => 'No') }
+      it { should contain_sshd_config('UsePAM').with('value' => 'no') }
     end
     describe 'Should disable Kerberos by default' do
-      it { should contain_sshd_config('KerberosAuthentication').with('value' => 'No') }
+      it { should contain_sshd_config('KerberosAuthentication').with('value' => 'no') }
     end
     describe 'Disable GSSAPI Authentication' do
-      it { should contain_sshd_config('GSSAPIAuthentication').with('value' => 'No') }
+      it { should contain_sshd_config('GSSAPIAuthentication').with('value' => 'no') }
     end
     describe 'Not have any allowed users by default' do
       it { should_not contain_sshd_config('AllowUsers') }
@@ -96,7 +96,7 @@ describe 'ssh::server' do
       :kerberosauth => 'Yes'
     } }
     describe 'Allow Root Login if specified' do
-      it { should contain_sshd_config('PermitRootLogin').with('value' => 'Yes') }
+      it { should contain_sshd_config('PermitRootLogin').with('value' => 'yes') }
     end
     describe 'Allow a non-default numeric ClientAliveInterval' do
       it { should contain_sshd_config('ClientAliveInterval').with('value' => '600') }
@@ -105,19 +105,19 @@ describe 'ssh::server' do
       it { should contain_sshd_config('ClientAliveCountMax').with('value' => '5') }
     end
     describe 'Allow setting PrivilegeSeperation to no' do
-      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'No') }
+      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'no') }
     end
     describe 'Allow us to change MaxAuthRetries' do
       it { should contain_sshd_config('MaxAuthTries').with('value' => '5') }
     end
     describe 'Allow us to use password authentication' do
-      it { should contain_sshd_config('PasswordAuthentication').with('value' => 'Yes') }
+      it { should contain_sshd_config('PasswordAuthentication').with('value' => 'yes') }
     end
     describe 'Allow us to use PAM' do
-      it { should contain_sshd_config('UsePAM').with('value' => 'Yes') }
+      it { should contain_sshd_config('UsePAM').with('value' => 'yes') }
     end
     describe 'Allow use of kerberos auth' do
-      it { should contain_sshd_config('KerberosAuthentication').with('value' => 'Yes') }
+      it { should contain_sshd_config('KerberosAuthentication').with('value' => 'yes') }
     end
   end
 

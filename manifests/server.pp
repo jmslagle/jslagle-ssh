@@ -60,17 +60,17 @@ class ssh::server($ensure = 'present',
 
   # All of our sshd_config options that do not allow redefinition
   sshd_config { 'IgnoreRhosts':
-    value  => 'No',
+    value  => 'no',
     notify => Service['ssh'],
   }
 
   sshd_config { 'HostbasedAuthentication':
-    value => 'No',
+    value => 'no',
     notify => Service['ssh'],
   }
 
   sshd_config { 'PermitEmptyPasswords':
-    value => 'No',
+    value => 'no',
     notify => Service['ssh'],
   }
 
@@ -80,23 +80,23 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'StrictModes':
-    value  => 'Yes',
+    value  => 'yes',
     notify => Service['ssh'],
   }
 
   sshd_config { 'TCPKeepAlive':
-    value  => 'No',
+    value  => 'no',
     notify => Service['ssh'],
   }
 
   sshd_config { 'GSSAPIAuthentication':
-    value  => 'No',
+    value  => 'no',
     notify => Service['ssh'],
   }
 
   # Params that allow changes
   sshd_config { 'PermitRootLogin':
-    value  => $permitroot,
+    value  => downcase($permitroot),
     notify => Service['ssh'],
   }
 
@@ -111,7 +111,7 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'UsePrivilegeSeperation':
-    value  => $privilegeseperation,
+    value  => downcase($privilegeseperation),
     notify => Service['ssh'],
   }
 
@@ -121,17 +121,17 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'PasswordAuthentication':
-    value  => $passwordauth,
+    value  => downcase($passwordauth),
     notify => Service['ssh'],
   }
 
   sshd_config { 'UsePAM':
-    value  => $usepam,
+    value  => downcase($usepam),
     notify => Service['ssh'],
   }
 
   sshd_config { 'KerberosAuthentication':
-    value  => $kerberosauth,
+    value  => downcase($kerberosauth),
     notify => Service['ssh'],
   }
 
