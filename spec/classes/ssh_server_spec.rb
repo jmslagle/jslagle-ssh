@@ -12,7 +12,8 @@ describe 'ssh::server' do
     let(:facts) { { :osfamily => 'RedHat' }}
 
     describe 'RedHat should get openssh-server package' do
-      it { should contain_package('openssh-server').with_ensure('present') }
+      it { should contain_package('ssh-server').with({ 'ensure' => 'present',
+                                                     'name' => 'openssh-server' } ) }
     end
 
   end

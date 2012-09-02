@@ -14,9 +14,9 @@ class ssh::server($ensure = 'present',
   include ssh::params
 
   if ($ssh::params::serverpkg != undef) {
-    package { $ssh::params::serverpkg:
+    package { 'ssh-server':
       ensure => $ensure,
-      name   =>  'ssh-server',
+      name   =>  $ssh::params::serverpkg,
     }
   }
 
