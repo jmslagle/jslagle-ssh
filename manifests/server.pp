@@ -1,6 +1,6 @@
 class ssh::server($ensure = 'present',
   $enabled = true,
-  $svcensure = 'present',
+  $svcensure = 'running',
   $permitroot = 'No',
   $aliveinterval = '60',
   $alivecount = '3',

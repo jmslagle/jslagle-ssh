@@ -28,7 +28,7 @@ describe 'ssh::server' do
 
   describe 'Non OS specific' do
     describe 'ssh service should be running' do
-      it { should contain_service('ssh') }
+      it { should contain_service('ssh').with_ensure('running') }
     end
   end
 
