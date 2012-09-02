@@ -4,7 +4,7 @@ class ssh::server($ensure = 'present',
   $permitroot = 'No',
   $aliveinterval = '60',
   $alivecount = '3',
-  $privilegeseperation = 'Yes',
+  $privilegeseparation = 'Yes',
   $maxauth = '2',
   $passwordauth = 'No',
   $usepam = 'No',
@@ -37,8 +37,8 @@ class ssh::server($ensure = 'present',
     fail("maxauth must be a positive number")
   }
 
-  if ($privilegeseperation !~ /(?i:yes|no)/) {
-    fail("privilegeseperation must be yes or no")
+  if ($privilegeseparation !~ /(?i:yes|no)/) {
+    fail("privilegeseparation must be yes or no")
   }
 
   if ($passwordauth !~ /(?i:yes|no)/) {
@@ -110,8 +110,8 @@ class ssh::server($ensure = 'present',
     notify => Service['ssh'],
   }
 
-  sshd_config { 'UsePrivilegeSeperation':
-    value  => downcase($privilegeseperation),
+  sshd_config { 'UsePrivilegeSeparation':
+    value  => downcase($privilegeseparation),
     notify => Service['ssh'],
   }
 

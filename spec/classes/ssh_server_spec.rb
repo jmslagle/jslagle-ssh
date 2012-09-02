@@ -61,8 +61,8 @@ describe 'ssh::server' do
     describe 'Should set the ClientAliveCountMax to 3 by default' do
       it { should contain_sshd_config('ClientAliveCountMax').with('value' => '3') }
     end
-    describe 'Should enable Privilege seperation by default' do
-      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'yes') }
+    describe 'Should enable Privilege separation by default' do
+      it { should contain_sshd_config('UsePrivilegeSeparation').with('value' => 'yes') }
     end
     describe 'Should set MaxAuthTries to 2 by default' do
       it { should contain_sshd_config('MaxAuthTries').with('value' => '2') }
@@ -89,7 +89,7 @@ describe 'ssh::server' do
       :permitroot => 'Yes',
       :aliveinterval => '600',
       :alivecount => '5',
-      :privilegeseperation => 'No',
+      :privilegeseparation => 'No',
       :maxauth => '5',
       :passwordauth => 'Yes',
       :usepam => 'Yes',
@@ -104,8 +104,8 @@ describe 'ssh::server' do
     describe 'Allow a non-default numeric ClientAliveCountMax' do
       it { should contain_sshd_config('ClientAliveCountMax').with('value' => '5') }
     end
-    describe 'Allow setting PrivilegeSeperation to no' do
-      it { should contain_sshd_config('UsePrivilegeSeperation').with('value' => 'no') }
+    describe 'Allow setting PrivilegeSeparation to no' do
+      it { should contain_sshd_config('UsePrivilegeSeparation').with('value' => 'no') }
     end
     describe 'Allow us to change MaxAuthRetries' do
       it { should contain_sshd_config('MaxAuthTries').with('value' => '5') }
@@ -140,8 +140,8 @@ describe 'ssh::server' do
         expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
       end
     end
-    describe 'privilegeseperation not yes or no' do
-      let (:params) { { :privilegeseperation => 'Moo' } }
+    describe 'privilegeseparation not yes or no' do
+      let (:params) { { :privilegeseparation => 'Moo' } }
       it 'should fail' do
         expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
       end
