@@ -8,5 +8,5 @@ description 'SSH Module using augeasproviders'
 project_page 'https://github.com/jmslagle/jslagle-ssh'
 
 ## Add dependencies, if any:
-dependency 'domcleal/augeasproviers'
+dependency 'domcleal/augeasproviders'
 dependency 'puppetlabs/stdlib'
