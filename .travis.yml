@@ -1,0 +1,10 @@
+rvm:
+  - 1.8.7
+  - 1.9.3
+notifications:
+  email:
+    - jslagle@gmail.com
+  env:
+    - PUPPET_VERSION=3.0.1
+    - PUPPET_VERSION=2.7.19
+
