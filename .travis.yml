@@ -4,7 +4,7 @@ rvm:
 notifications:
   email:
     - jslagle@gmail.com
-  env:
-    - PUPPET_VERSION=3.0.1
-    - PUPPET_VERSION=2.7.19
+env:
+  - PUPPET_VERSION=3.0.1
+  - PUPPET_VERSION=2.7.19
 
