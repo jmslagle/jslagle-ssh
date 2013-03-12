@@ -9,7 +9,7 @@ class ssh::server($ensure = 'present',
   $passwordauth = 'No',
   $usepam = 'No',
   $kerberosauth = 'No',
-  $allowusers = ""
+  $allowusers = ''
 ) {
   include ssh::params
 
@@ -22,35 +22,35 @@ class ssh::server($ensure = 'present',
 
   # Validate Parameters
   if ($permitroot !~ /(?i:yes|no|without-password|forced-commands-only)/) {
-    fail("permitroot must be one of yes, no, without-password or forced-commands-only")
+    fail('permitroot must be one of yes, no, without-password or forced-commands-only')
   }
 
   if  ($aliveinterval !~ /^\d+$/ or $aliveinterval =~ /^0+$/ ) {
-    fail("aliveinterval must be a positive number")
+    fail('aliveinterval must be a positive number')
   }
 
   if  ($alivecount !~ /^\d+$/ or $alivecount =~ /^0+$/ ) {
-    fail("alivecount must be a positive number")
+    fail('alivecount must be a positive number')
   }
 
   if  ($maxauth !~ /^\d+$/ or $maxauth =~ /^0+$/ ) {
-    fail("maxauth must be a positive number")
+    fail('maxauth must be a positive number')
   }
 
   if ($privilegeseparation !~ /(?i:yes|no)/) {
-    fail("privilegeseparation must be yes or no")
+    fail('privilegeseparation must be yes or no')
   }
 
   if ($passwordauth !~ /(?i:yes|no)/) {
-    fail("passwordauth must be yes or no")
+    fail('passwordauth must be yes or no')
   }
 
   if ($usepam !~ /(?i:yes|no)/) {
-    fail("usepam must be yes or no")
+    fail('usepam must be yes or no')
   }
 
   if ($kerberosauth !~ /(?i:yes|no)/) {
-    fail("kerberosauth must be yes or no")
+    fail('kerberosauth must be yes or no')
   }
   service { 'ssh':
     ensure  => $svcensure,
@@ -65,12 +65,12 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'HostbasedAuthentication':
-    value => 'no',
+    value  => 'no',
     notify => Service['ssh'],
   }
 
   sshd_config { 'PermitEmptyPasswords':
-    value => 'no',
+    value  => 'no',
     notify => Service['ssh'],
   }
 
@@ -136,9 +136,9 @@ class ssh::server($ensure = 'present',
   }
 
   # Handle AllowUsers
-  if ($allowusers != "") {
+  if ($allowusers != '') {
     sshd_config { 'AllowUsers':
-      value => $allowusers,
+      value  => $allowusers,
       notify => Service['ssh'],
     }
   }
