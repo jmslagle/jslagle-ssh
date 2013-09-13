@@ -21,8 +21,9 @@ describe 'ssh::server' do
   describe 'test Debian related' do
     let(:facts) { { :osfamily => 'Debian' }}
 
-    describe 'Debian uses ssh-server package' do
-      it { should contain_package('ssh-server').with_ensure('present') }
+    describe 'Debian uses openssh-server package' do
+      it { should contain_package('ssh-server').with({ 'ensure' => 'present',
+                                                    'name' => 'openssh-server' } ) }
     end
 
   end

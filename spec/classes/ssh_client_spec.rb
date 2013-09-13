@@ -18,7 +18,7 @@ describe 'ssh::client' do
     let(:facts) { { :osfamily => 'Debian' }}
 
     describe 'Debian uses ssh-clients package' do
-      it { should contain_package('ssh-client') }
+      it { should contain_package('openssh-client') }
     end
   end
 end

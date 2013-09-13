@@ -6,8 +6,8 @@ class ssh::params {
       $service   = 'sshd'
     }
     'Debian': {
-      $clientpkg = 'ssh-client'
-      $serverpkg = 'ssh-server'
+      $clientpkg = 'openssh-client'
+      $serverpkg = 'openssh-server'
       $service   = 'ssh'
     }
     'FreeBSD': {
