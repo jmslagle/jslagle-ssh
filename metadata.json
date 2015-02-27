@@ -1,0 +1,24 @@
+{
+  "name": "jslagle-ssh",
+  "version": "0.0.3",
+  "author": "jslagle",
+  "summary": "Provides SSH functions",
+  "license": "Apache-2.0",
+  "source": "http://github.com/jmslagle/jslagle-ssh",
+  "project_page": "http://github.com/jmslagle/jslagle-ssh",
+  "issues_url": "http://github.com/jmslagle/jslagle-ssh",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 3.0.0"
+    },
+    {
+      "name": "herculesteam-augeasproviders_core",
+      "version_requirement": ">= 2.0.0"
+    },
+    {
+      "name": "herculesteam-augeasproviders_ssh",
+      "version_requirement": ">= 2.0.0"
+    }
+  ]
+}
