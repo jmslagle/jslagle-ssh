@@ -1,7 +1,7 @@
 fixtures:
   repositories:
-    "augeasproviders_ssh": "git@github.com:hercules-team/augeasproviders_ssh.git"
-    "augeasproviders_core": "git@github.com:hercules-team/augeasproviders_core.git"
+    "augeasproviders_ssh": "git://github.com/hercules-team/augeasproviders_ssh.git"
+    "augeasproviders_core": "git://github.com/hercules-team/augeasproviders_core.git"
     "stdlib": "git://github.com/puppetlabs/puppetlabs-stdlib.git"
   symlinks:
     "ssh": "#{source_dir}"
