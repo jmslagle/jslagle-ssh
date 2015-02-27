@@ -37,7 +37,7 @@ describe 'ssh::server' do
 
   describe 'SSH Option checks' do
     describe 'Should not allow rhosts' do
-      it { should contain_sshd_config('IgnoreRhosts').with('value' => 'no') }
+      it { should contain_sshd_config('IgnoreRhosts').with('value' => 'yes') }
     end
     describe 'Should not allow host based auth' do
       it { should contain_sshd_config('HostbasedAuthentication').with('value' => 'no') }
