@@ -12,7 +12,6 @@ class ssh::server($ensure = 'present',
   $allowusers = ''
 ) {
   include ssh::params
-
   if ($ssh::params::serverpkg != undef) {
     package { 'ssh-server':
       ensure => $ensure,

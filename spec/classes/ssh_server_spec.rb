@@ -6,6 +6,7 @@ require 'spec_helper'
 describe 'ssh::server' do
   describe 'Basic class setup' do
     it { should contain_class('ssh::params') }
+    it { should contain_class('ssh::server') }
   end
   describe 'test RedHat functions' do
 
@@ -126,49 +127,49 @@ describe 'ssh::server' do
     describe 'broken permitroot' do
       let (:params) { { :permitroot => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'aliveinternal not a number' do
       let (:params) { { :aliveinterval => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'alivecount not a number' do
       let (:params) { { :alivecount => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'privilegeseparation not yes or no' do
       let (:params) { { :privilegeseparation => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'maxauth not a number' do
       let (:params) { { :maxauth => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'passwordauth not yes or no' do
       let (:params) { { :passwordauth => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'usepam not yes or no' do
       let (:params) { { :usepam => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
     describe 'kerberosauth not yes or no' do
       let (:params) { { :kerberosauth => 'Moo' } }
       it 'should fail' do
-        expect { should include_class('ssh::server') }.to raise_error(Puppet::Error)
+        should raise_error(Puppet::Error)
       end
     end
   end

@@ -4,7 +4,9 @@ require 'spec_helper'
 describe 'ssh::client' do
   describe 'Basic class setup' do
     it { should contain_class('ssh::params') }
+    it { should contain_class('ssh::client') }
   end
+
   describe 'test RedHat functions' do
 
     let(:facts) { { :osfamily => 'RedHat' }}
