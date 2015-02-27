@@ -182,6 +182,7 @@ describe 'ssh::server' do
   end
 
   describe 'Array based config items' do
+    let(:facts) { { :osfamily => 'RedHat' }}
     let(:params) { { :allowusers => ["user1", "user2"] } }
     describe 'Allow us to send in an array of permitted users' do
       it { should contain_sshd_config('AllowUsers').with('value' => ["user1", "user2"]) }
