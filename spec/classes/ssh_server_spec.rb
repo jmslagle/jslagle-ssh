@@ -5,6 +5,7 @@ require 'spec_helper'
 
 describe 'ssh::server' do
   describe 'Basic class setup' do
+    let(:facts) { { :osfamily => 'RedHat' }}
     it { should contain_class('ssh::params') }
     it { should contain_class('ssh::server') }
   end
@@ -30,12 +31,14 @@ describe 'ssh::server' do
   end
 
   describe 'Non OS specific' do
+    let(:facts) { { :osfamily => 'RedHat' }}
     describe 'ssh service should be running' do
       it { should contain_service('ssh').with_ensure('running') }
     end
   end
 
   describe 'SSH Option checks' do
+    let(:facts) { { :osfamily => 'RedHat' }}
     describe 'Should not allow rhosts' do
       it { should contain_sshd_config('IgnoreRhosts').with('value' => 'yes') }
     end
@@ -85,8 +88,11 @@ describe 'ssh::server' do
       it { should_not contain_sshd_config('AllowUsers') }
     end
   end
-  
+
   describe 'Non-Default values for config options' do
+
+    let(:facts) { { :osfamily => 'RedHat' }}
+
     let(:params) { {
       :permitroot => 'Yes',
       :aliveinterval => '600',
@@ -124,6 +130,7 @@ describe 'ssh::server' do
   end
 
   describe 'Error handling for broken parameter values' do
+    let(:facts) { { :osfamily => 'RedHat' }}
     describe 'broken permitroot' do
       let (:params) { { :permitroot => 'Moo' } }
       it 'should fail' do
