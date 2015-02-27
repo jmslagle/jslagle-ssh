@@ -59,7 +59,7 @@ class ssh::server($ensure = 'present',
 
   # All of our sshd_config options that do not allow redefinition
   sshd_config { 'IgnoreRhosts':
-    value  => 'no',
+    value  => 'yes',
     notify => Service['ssh'],
   }
 
@@ -89,6 +89,31 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'GSSAPIAuthentication':
+    value  => 'no',
+    notify => Service['ssh'],
+  }
+
+  sshd_config { 'RhostsAuthentication':
+    value  => 'no',
+    notify => Service['ssh'],
+  }
+
+  sshd_config { 'PubkeyAuthentication':
+    value  => 'yes',
+    notify => Service['ssh'],
+  }
+
+  sshd_config { 'Protocol':
+    value  => '2',
+    notify => Service['ssh'],
+  }
+
+  sshd_config { 'Port':
+    value  => '22',
+    notify => Service['ssh'],
+  }
+
+  sshd_config { 'RhostsRSAAuthentication':
     value  => 'no',
     notify => Service['ssh'],
   }
