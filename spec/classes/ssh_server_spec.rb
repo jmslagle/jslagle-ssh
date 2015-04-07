@@ -84,9 +84,28 @@ describe 'ssh::server' do
     describe 'Disable GSSAPI Authentication' do
       it { should contain_sshd_config('GSSAPIAuthentication').with('value' => 'no') }
     end
+    describe 'Should set loglevel to INFO by default' do
+      it { should contain_sshd_config('LogLevel').with('value' => 'INFO') }
+    end
+    describe 'Should set Port to 22' do
+      it { should contain_sshd_config('Port').with('value' => '22') }
+    end
+    describe 'Should set Protocol to 2' do
+      it { should contain_sshd_config('Protocol').with('value' => '2') }
+    end
+    describe 'Should allow pubkey' do
+      it { should contain_sshd_config('PubkeyAuthentication').with('value' => 'yes') }
+    end
+    describe 'Should not allow Rhost' do
+      it { should contain_sshd_config('RhostsAuthentication').with('value' => 'no') }
+    end
+    describe 'Should not allow RhostsRSA' do
+      it { should contain_sshd_config('RhostsRSAAuthentication').with('value' => 'no') }
+    end
     describe 'Not have any allowed users by default' do
       it { should_not contain_sshd_config('AllowUsers') }
     end
+
   end
 
   describe 'Non-Default values for config options' do
@@ -101,7 +120,8 @@ describe 'ssh::server' do
       :maxauth => '5',
       :passwordauth => 'Yes',
       :usepam => 'Yes',
-      :kerberosauth => 'Yes'
+      :kerberosauth => 'Yes',
+      :loglevel => 'VERBOSE'
     } }
     describe 'Allow Root Login if specified' do
       it { should contain_sshd_config('PermitRootLogin').with('value' => 'yes') }
@@ -126,6 +146,9 @@ describe 'ssh::server' do
     end
     describe 'Allow use of kerberos auth' do
       it { should contain_sshd_config('KerberosAuthentication').with('value' => 'yes') }
+    end
+    describe 'Allow use of loglevel' do
+      it { should contain_sshd_config('LogLevel').with('value' => 'VERBOSE') }
     end
   end
 
@@ -169,6 +192,12 @@ describe 'ssh::server' do
     end
     describe 'usepam not yes or no' do
       let (:params) { { :usepam => 'Moo' } }
+      it 'should fail' do
+        should raise_error(Puppet::Error)
+      end
+    end
+    describe 'loglevel not valid' do
+      let (:params) { { :loglevel => 'Moo' } }
       it 'should fail' do
         should raise_error(Puppet::Error)
       end

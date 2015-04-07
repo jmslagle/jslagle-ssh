@@ -9,7 +9,8 @@ class ssh::server($ensure = 'present',
   $passwordauth = 'No',
   $usepam = 'No',
   $kerberosauth = 'No',
-  $allowusers = ''
+  $allowusers = '',
+  $loglevel = 'INFO'
 ) {
   include ssh::params
   if ($ssh::params::serverpkg != undef) {
@@ -51,10 +52,13 @@ class ssh::server($ensure = 'present',
   if ($kerberosauth !~ /(?i:yes|no)/) {
     fail('kerberosauth must be yes or no')
   }
+
+  validate_re($loglevel, [ '^QUIET$', '^FATAL$', '^ERROR$', '^INFO$', '^VERBOSE$', '^DEBUG[1-3]*$'])
+
   service { 'ssh':
-    ensure  => $svcensure,
-    name    => $ssh::params::service,
-    enable  => $enabled,
+    ensure => $svcensure,
+    name   => $ssh::params::service,
+    enable => $enabled,
   }
 
   # All of our sshd_config options that do not allow redefinition
@@ -74,7 +78,7 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'LogLevel':
-    value  => 'INFO',
+    value  => $loglevel,
     notify => Service['ssh'],
   }
 
