@@ -10,7 +10,7 @@ class ssh::server($ensure = 'present',
   $usepam = 'No',
   $kerberosauth = 'No',
   $allowusers = '',
-  $loglevel = 'INFO'
+  $sshloglevel = 'INFO'
 ) {
   include ssh::params
   if ($ssh::params::serverpkg != undef) {
@@ -53,7 +53,7 @@ class ssh::server($ensure = 'present',
     fail('kerberosauth must be yes or no')
   }
 
-  validate_re($loglevel, [ '^QUIET$', '^FATAL$', '^ERROR$', '^INFO$', '^VERBOSE$', '^DEBUG[1-3]*$'])
+  validate_re($sshloglevel, [ '^QUIET$', '^FATAL$', '^ERROR$', '^INFO$', '^VERBOSE$', '^DEBUG[1-3]*$'])
 
   service { 'ssh':
     ensure => $svcensure,
@@ -78,7 +78,7 @@ class ssh::server($ensure = 'present',
   }
 
   sshd_config { 'LogLevel':
-    value  => $loglevel,
+    value  => $sshloglevel,
     notify => Service['ssh'],
   }
 

@@ -121,7 +121,7 @@ describe 'ssh::server' do
       :passwordauth => 'Yes',
       :usepam => 'Yes',
       :kerberosauth => 'Yes',
-      :loglevel => 'VERBOSE'
+      :sshloglevel => 'VERBOSE'
     } }
     describe 'Allow Root Login if specified' do
       it { should contain_sshd_config('PermitRootLogin').with('value' => 'yes') }
@@ -197,7 +197,7 @@ describe 'ssh::server' do
       end
     end
     describe 'loglevel not valid' do
-      let (:params) { { :loglevel => 'Moo' } }
+      let (:params) { { :sshloglevel => 'Moo' } }
       it 'should fail' do
         should raise_error(Puppet::Error)
       end
