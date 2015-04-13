@@ -9,9 +9,9 @@ class ssh::client(
   validate_re($protocol, ['^1$', '^2$', '^1,2$', '^2,1$'])
 
   if ($ssh::params::clientpkg != undef) {
-    package { $ssh::params::clientpkg:
+    package { 'ssh':
       ensure => $ensure,
-      name   =>  'ssh',
+      name   => $ssh::params::clientpkg,
     }
   }
 

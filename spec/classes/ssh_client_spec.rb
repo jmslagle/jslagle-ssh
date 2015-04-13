@@ -13,15 +13,15 @@ describe 'ssh::client' do
     let(:facts) { { :osfamily => 'RedHat' }}
 
     describe 'RedHat should get openssh-clients package' do
-      it { should contain_package('openssh-clients') }
+      it { should contain_package('ssh').with_name('openssh-clients') }
     end
   end
 
   describe 'test Debian related' do
     let(:facts) { { :osfamily => 'Debian' }}
 
-    describe 'Debian uses ssh-clients package' do
-      it { should contain_package('openssh-client') }
+    describe 'Debian uses openssh-client package' do
+      it { should contain_package('ssh').with_name('openssh-client') }
     end
   end
   describe 'SSH Option checks' do
