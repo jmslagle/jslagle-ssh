@@ -13,6 +13,7 @@ class ssh::server($ensure = 'present',
   $sshloglevel = 'INFO'
 ) {
   include ssh::params
+  include stdlib
 
   anchor { 'sshd': }
 
