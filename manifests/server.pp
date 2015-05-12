@@ -13,10 +13,14 @@ class ssh::server($ensure = 'present',
   $sshloglevel = 'INFO'
 ) {
   include ssh::params
+
+  anchor { 'sshd': }
+
   if ($ssh::params::serverpkg != undef) {
     package { 'ssh-server':
       ensure => $ensure,
-      name   =>  $ssh::params::serverpkg,
+      name   => $ssh::params::serverpkg,
+      before => Anchor['sshd'],
     }
   }
 
@@ -63,111 +67,132 @@ class ssh::server($ensure = 'present',
 
   # All of our sshd_config options that do not allow redefinition
   sshd_config { 'IgnoreRhosts':
-    value  => 'yes',
-    notify => Service['ssh'],
+    value   => 'yes',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'HostbasedAuthentication':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'PermitEmptyPasswords':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'LogLevel':
-    value  => $sshloglevel,
-    notify => Service['ssh'],
+    value   => $sshloglevel,
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'StrictModes':
-    value  => 'yes',
-    notify => Service['ssh'],
+    value   => 'yes',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'TCPKeepAlive':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'GSSAPIAuthentication':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'RhostsAuthentication':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'PubkeyAuthentication':
-    value  => 'yes',
-    notify => Service['ssh'],
+    value   => 'yes',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'Protocol':
-    value  => '2',
-    notify => Service['ssh'],
+    value   => '2',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'Port':
-    value  => '22',
-    notify => Service['ssh'],
+    value   => '22',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'RhostsRSAAuthentication':
-    value  => 'no',
-    notify => Service['ssh'],
+    value   => 'no',
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   # Params that allow changes
   sshd_config { 'PermitRootLogin':
-    value  => downcase($permitroot),
-    notify => Service['ssh'],
+    value   => downcase($permitroot),
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'ClientAliveInterval':
-    value  => $aliveinterval,
-    notify => Service['ssh'],
+    value   => $aliveinterval,
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'ClientAliveCountMax':
-    value  => $alivecount,
-    notify => Service['ssh'],
+    value   => $alivecount,
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'UsePrivilegeSeparation':
-    value  => downcase($privilegeseparation),
-    notify => Service['ssh'],
+    value   => downcase($privilegeseparation),
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'MaxAuthTries':
-    value  => $maxauth,
-    notify => Service['ssh'],
+    value   => $maxauth,
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'PasswordAuthentication':
-    value  => downcase($passwordauth),
-    notify => Service['ssh'],
+    value   => downcase($passwordauth),
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'UsePAM':
-    value  => downcase($usepam),
-    notify => Service['ssh'],
+    value   => downcase($usepam),
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   sshd_config { 'KerberosAuthentication':
-    value  => downcase($kerberosauth),
-    notify => Service['ssh'],
+    value   => downcase($kerberosauth),
+    notify  => Service['ssh'],
+    require => Anchor['sshd'],
   }
 
   # Handle AllowUsers
   if ($allowusers != '') {
     sshd_config { 'AllowUsers':
-      value  => $allowusers,
-      notify => Service['ssh'],
+      value   => $allowusers,
+      notify  => Service['ssh'],
+      require => Anchor['sshd'],
     }
   }
 
